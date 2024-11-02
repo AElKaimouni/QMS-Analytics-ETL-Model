@@ -25,6 +25,6 @@ jobs:
         script: |
           cd /home/github/QMS-Analytics-ETL-Model
           git pull origin stage
-          echo "${{ secrets.PASSWORD }}" | sudo docker build -t my_dbt_cron_job .
-          echo "${{ secrets.PASSWORD }}" | sudo docker rm -f qms-etl
-          echo "${{ secrets.PASSWORD }}" | sudo docker run -d --name qms-etl --mount type=bind,source=/home/github/QMS-Analytics-ETL-Model/profiles.yml,target=/app/profiles.yml my_dbt_cron_job
+          echo "${{ secrets.PASSWORD }}" | sudo -S docker build -t my_dbt_cron_job .
+          echo "${{ secrets.PASSWORD }}" | sudo -S docker rm -f qms-etl
+          echo "${{ secrets.PASSWORD }}" | sudo -S docker run -d --name qms-etl --mount type=bind,source=/home/github/QMS-Analytics-ETL-Model/profiles.yml,target=/app/profiles.yml my_dbt_cron_job
