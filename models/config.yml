@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: queue_summary
+
+    config:
+      contract: {enforced: true}
+
+    # Document within the same codebase
+    description: Generate Queues Daily Summary
+
+    constraints:
+      - type: primary_key
+        columns: [queue_id, date]
+
+    # Configure in ways that feel intuitive and familiar
+    config:
+      materialized: incremental
+      unique_key: [queue_id, date]
+      merge_update_columns: [total_reservations]
+
+    # Test the results of my Python transformation
+    columns:
+      - name: queue_id
+        data_type: uuid
+      - name: date
+        data_type: date
+      - name: total_reservations
+        data_type: integer
