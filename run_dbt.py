@@ -28,7 +28,7 @@ def time_until_midnight():
     now = datetime.now()
     # Calculate the next midnight
     next_midnight = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
-    return 2
+    return next_midnight
 
 if __name__ == "__main__":
     while True:
